@@ -1,0 +1,1 @@
+To install plug-ins, copy the plug-in DLL to this directory and restart TunerPro.

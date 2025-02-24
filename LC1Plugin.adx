@@ -1,0 +1,55 @@
+<ADXFORMAT version="1.01">
+  <!-- Written 07/10/2013 22:36:29 -->
+  <ADXHEADER>
+    <guid>12199e5b-2ac8-439b-9352-89cc41b223f6</guid>
+    <flags>0x10000</flags>
+    <objectcount>4</objectcount>
+    <userversion>1.0</userversion>
+    <author>Eric Honsch</author>
+    <desc>ADX for the LC-1 Wideband O2 sensor plugin</desc>
+    <baud>19200</baud>
+    <DEPENDSONPLUGIN guid="8cc57af1-1778-4184-8e73-81bbe9251760" filename="LC1Plugin.dll" desc="LC1 Reader" minvermajor="1" minverminor="0" />
+    <DEPENDSONPLUGIN guid="7dc5537c-3d96-4be9-8b77-a88f4355a147" filename="LC1Plugin.dll" desc="LC1 IO Driver" minvermajor="1" minverminor="0" />
+    <DEFAULTS datasizeinbits="32" sigdigits="4" outputtype="3" baud="0" signed="0" lsbfirst="0" float="0" />
+    <monitorcmd>AFRReading</monitorcmd>
+  </ADXHEADER>
+
+  <ADXDASHBOARD id="AFRDASH" idhash="0xC409233B" title="AFR">
+    <entrycount>1</entrycount>
+    <ADXDGENTRY gaugetype="0" itemidhash="0xCD13BC7B" left="0" top="0" right="100" bottom="100" arcmax="300" />
+  </ADXDASHBOARD>
+
+  <ADXMONITOR id="AFRMonitor" idhash="0x1F5715F9" title="AFRMonitor">
+    <mainbkgcolor>0x00FFFFFF</mainbkgcolor>
+    <plotbkgcolor>0x00F0F0F0</plotbkgcolor>
+    <plotoutlinecolor>0x00000000</plotoutlinecolor>
+    <titlecolor>0x00000000</titlecolor>
+    <timeaxiscolor>0x00000000</timeaxiscolor>
+    <entrycount>1</entrycount>
+    <ADXMONSERIES linecolor="0x000000" axiscolor="0x000000" itemidhash="0xCD13BC7B" />
+  </ADXMONITOR>
+
+  <ADXCLISTENPACKET id="AFRReading" idhash="0x50A189E7" title="AFRReading" flags="0x00000005">
+    <listentimeout>90</listentimeout>
+    <packetbodylength>4</packetbodylength>
+    <packetoffsetinbody>0</packetoffsetinbody>
+    <packetsize>4</packetsize>
+  </ADXCLISTENPACKET>
+
+  <ADXVALUE id="AFR" idhash="0xCD13BC7B" title="Air/Fuel Ratio">
+    <desc>The Air fuel ratio from the LC1&#013;&#010;This is the sensor lambda * ronfigures stoichiometric valie stored in the LC-1</desc>
+    <flags>0x0000000E</flags>
+    <parentcmdidhash>0x50A189E7</parentcmdidhash>
+    <packetoffset>0x00</packetoffset>
+    <sizeinbits>32</sizeinbits>
+    <range low="8.000000" high="20.000000" />
+    <alarms low="12.000000" high="17.000000" />
+    <digcount>2</digcount>
+    <outputtype>3</outputtype>
+    <datatype>28</datatype>
+    <unittype>21</unittype>
+    <MATH equation="X/65536">
+      <VAR varID="X" type="native" />
+    </MATH>
+  </ADXVALUE>
+</ADXFORMAT>
